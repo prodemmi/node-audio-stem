@@ -1,5 +1,6 @@
 /build*/
 /out*/
+/models*/
 *.bin
 *.wav
 *.mp3
