@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
 jobs:
   build-cpp:
     runs-on: ubuntu-latest
@@ -14,6 +13,7 @@ jobs:
         with:
           submodules: true
           fetch-depth: 0
+          
       - name: Install build dependencies
         run: |
           sudo apt-get update
@@ -35,11 +35,8 @@ jobs:
     needs: [build-cpp]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo with submodules
+      - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          submodules: true
-          fetch-depth: 0
 
       - name: Download C++ build artifacts
         uses: actions/download-artifact@v4
@@ -52,21 +49,17 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install build tools (for node-gyp)
+      - name: Build node addon
+        working-directory: ./node-audio-stem
         run: |
-          sudo apt-get update
-          sudo apt-get install -y python3 g++ make
-
-      - name: Install dependencies and build node addon
-        run: |
-          npm install
-          node-gyp configure build
+          npx node-gyp configure build --yes
 
       - name: Upload node module artifacts
+        working-directory: ./node-audio-stem
         uses: actions/upload-artifact@v4
         with:
           name: node-addon
-          path: node-audio-stem/build/
+          path: build/
 
   publish:
     needs: [build-gyp]
@@ -81,15 +74,14 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: Download node addon build output
+        working-directory: ./node-audio-stem
         uses: actions/download-artifact@v4
         with:
           name: node-addon
-          path: node-audio-stem/build/
+          path: build/
 
       - name: Publish to npm
+        working-directory: ./node-audio-stem
         run: |
-          cd node-audio-stem
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-
-          npm ci
           npm publish --provenance --access public

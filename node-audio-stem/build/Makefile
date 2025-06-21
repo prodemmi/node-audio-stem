@@ -339,7 +339,7 @@ endif
 
 quiet_cmd_regen_makefile = ACTION Regenerating $@
 cmd_regen_makefile = cd $(srcdir); /mnt/projects/Projects/Programming/node-audio-stem/node-audio-stem/node_modules/node-gyp/gyp/gyp_main.py -fmake --ignore-environment "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/home/emad-pc/.cache/node-gyp/22.14.0" "-Dnode_gyp_dir=/mnt/projects/Projects/Programming/node-audio-stem/node-audio-stem/node_modules/node-gyp" "-Dnode_lib_file=/home/emad-pc/.cache/node-gyp/22.14.0/<(target_arch)/node.lib" "-Dmodule_root_dir=/mnt/projects/Projects/Programming/node-audio-stem/node-audio-stem" "-Dnode_engine=v8" "--depth=." "-Goutput_dir=." "--generator-output=build" -I/mnt/projects/Projects/Programming/node-audio-stem/node-audio-stem/build/config.gypi -I/mnt/projects/Projects/Programming/node-audio-stem/node-audio-stem/node_modules/node-gyp/addon.gypi -I/home/emad-pc/.cache/node-gyp/22.14.0/include/node/common.gypi "--toplevel-dir=." binding.gyp
-Makefile: $(srcdir)/binding.gyp $(srcdir)/node_modules/node-gyp/addon.gypi $(srcdir)/build/config.gypi $(srcdir)/../../../../../../home/emad-pc/.cache/node-gyp/22.14.0/include/node/common.gypi
+Makefile: $(srcdir)/../../../../../../home/emad-pc/.cache/node-gyp/22.14.0/include/node/common.gypi $(srcdir)/build/config.gypi $(srcdir)/binding.gyp $(srcdir)/node_modules/node-gyp/addon.gypi
 	$(call do_cmd,regen_makefile)
 
 # "all" is a concatenation of the "all" targets from all the included
