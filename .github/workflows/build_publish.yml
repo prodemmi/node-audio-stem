@@ -35,8 +35,11 @@ jobs:
     needs: [build-cpp]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout repo with submodules
         uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
 
       - name: Download C++ build artifacts
         uses: actions/download-artifact@v4
