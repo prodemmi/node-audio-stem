@@ -1,7 +1,7 @@
 /build*/
 /out*/
 /models*/
-/node_modules/
+*/node_modules/
 *.bin
 *.wav
 *.mp3
