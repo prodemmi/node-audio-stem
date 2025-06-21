@@ -3,3 +3,4 @@
 *.bin
 *.wav
 *.mp3
+.npmrc
