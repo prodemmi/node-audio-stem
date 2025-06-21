@@ -55,11 +55,10 @@ jobs:
           npx node-gyp configure build --yes
 
       - name: Upload node module artifacts
-        working-directory: ./node-audio-stem
         uses: actions/upload-artifact@v4
         with:
           name: node-addon
-          path: build/
+          path: node-audio-stem/build/
 
   publish:
     needs: [build-gyp]
@@ -74,11 +73,10 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: Download node addon build output
-        working-directory: ./node-audio-stem
         uses: actions/download-artifact@v4
         with:
           name: node-addon
-          path: build/
+          path: node-audio-stem/build/
 
       - name: Publish to npm
         working-directory: ./node-audio-stem
