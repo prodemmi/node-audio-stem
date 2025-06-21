@@ -114,8 +114,6 @@ shift_inference(const struct demucscpp::demucs_model &model,
     int offset = rand() % max_shift;
     // int offset = 1337;
 
-    std::cout << "1., apply model w/ shift, offset: " << offset << std::endl;
-
     Eigen::MatrixXf shifted_audio =
         padded_mix.block(0, offset, 2, length + max_shift - offset);
 
@@ -192,10 +190,6 @@ split_inference(const struct demucscpp::demucs_model &model,
         int chunk_end = std::min(segment_samples, length - offset);
         Eigen::MatrixXf chunk = full_audio.block(0, offset, 2, chunk_end);
         int chunk_length = chunk.cols();
-
-        std::cout << "2., apply model w/ split, offset: " << offset
-                  << ", chunk shape: (" << chunk.rows() << ", " << chunk.cols()
-                  << ")" << std::endl;
 
         Eigen::Tensor3dXf chunk_out =
             segment_inference(model, chunk, segment_samples, buffers, stft_buf,
@@ -359,8 +353,6 @@ shift_inference(const struct demucscpp_v3::demucs_v3_model &model,
     int offset = rand() % max_shift;
     // int offset = 1337;
 
-    std::cout << "1., apply model w/ shift, offset: " << offset << std::endl;
-
     Eigen::MatrixXf shifted_audio =
         padded_mix.block(0, offset, 2, length + max_shift - offset);
 
@@ -437,10 +429,6 @@ split_inference(const struct demucscpp_v3::demucs_v3_model &model,
         int chunk_end = std::min(segment_samples, length - offset);
         Eigen::MatrixXf chunk = full_audio.block(0, offset, 2, chunk_end);
         int chunk_length = chunk.cols();
-
-        std::cout << "2., apply model w/ split, offset: " << offset
-                  << ", chunk shape: (" << chunk.rows() << ", " << chunk.cols()
-                  << ")" << std::endl;
 
         Eigen::Tensor3dXf chunk_out =
             segment_inference(model, chunk, segment_samples, buffers, stft_buf,

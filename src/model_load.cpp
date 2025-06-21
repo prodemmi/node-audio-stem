@@ -19,10 +19,6 @@ static void my_fprintf(const std::FILE *stream, const char *format, ...)
     {
         std::cerr << buffer;
     }
-    else
-    {
-        std::cout << buffer;
-    }
 }
 
 // forward declaration
@@ -50,15 +46,11 @@ static size_t load_single_tensor4d(FILE *f, const std::string &name,
 bool demucscpp::load_demucs_model(const std::string &model_file,
                                   struct demucs_model *model)
 {
-    my_fprintf(stderr, "%s: loading model\n", __func__);
-
     // compute t_start_us using C++ std::chrono
     const auto t_start_us =
         std::chrono::duration_cast<std::chrono::microseconds>(
             std::chrono::system_clock::now().time_since_epoch())
             .count();
-
-    std::cout << "Loading model_file... " << std::endl;
 
     FILE *f = fopen(model_file.c_str(), "rb");
     if (!f)
@@ -71,15 +63,12 @@ bool demucscpp::load_demucs_model(const std::string &model_file,
     // verify magic
     uint32_t magic;
 
-    std::cout << "Checking the magic of model_file" << std::endl;
-
     // read the size of uint32_t bytes from f into magic
     fread(&magic, sizeof(uint32_t), 1, f);
 
     if (magic == 0x646d6336) // dmc6
     {
         model->is_4sources = false;
-        std::cout << "Model magic is Demucs 6-source" << std::endl;
 
         // modify a few tensor shapes in the model corresponding to the
         // number of sources
@@ -92,7 +81,6 @@ bool demucscpp::load_demucs_model(const std::string &model_file,
     else if (magic == 0x646d6334) // dmc4
     {
         model->is_4sources = true;
-        std::cout << "Model magic is Demucs 4-source" << std::endl;
     }
     else
     {
@@ -104,16 +92,11 @@ bool demucscpp::load_demucs_model(const std::string &model_file,
     model->crosstransformer =
         demucscpp::initialize_crosstransformer(model->is_4sources);
 
-    std::cout << "Loading demucs model... " << std::endl;
-
     // we dont need to prepare memory for the weights
     // they come preallocated in the hardcoded model
 
     size_t total_size = 0;
     uint32_t n_loaded = 0;
-
-    // equivalent of with open(...) as f on each model_file
-    std::cout << "Loading weights from model_file" << std::endl;
 
     // load weights from the file one tensor at a time
 
@@ -145,10 +128,6 @@ bool demucscpp::load_demucs_model(const std::string &model_file,
         {
             break;
         }
-
-        // std::cout << "Loading tensor " << name << " with shape [" << ne[0]
-        //             << ", " << ne[1] << ", " << ne[2] << ", " << ne[3] << "]"
-        //             << std::endl;
 
         // match the tensor name to the correct tensor in the model
         size_t loaded_size = 0;
@@ -1302,15 +1281,11 @@ static size_t load_single_vector(FILE *f, const std::string &name,
 bool demucscpp_v3::load_demucs_v3_model(
     const std::string &model_file, struct demucscpp_v3::demucs_v3_model *model)
 {
-    my_fprintf(stderr, "%s: loading model\n", __func__);
-
     // compute t_start_us using C++ std::chrono
     const auto t_start_us =
         std::chrono::duration_cast<std::chrono::microseconds>(
             std::chrono::system_clock::now().time_since_epoch())
             .count();
-
-    std::cout << "Loading model_file... " << std::endl;
 
     FILE *f = fopen(model_file.c_str(), "rb");
     if (!f)
@@ -1323,8 +1298,6 @@ bool demucscpp_v3::load_demucs_v3_model(
     // verify magic
     uint32_t magic;
 
-    std::cout << "Checking the magic of model_file" << std::endl;
-
     // read the size of uint32_t bytes from f into magic
     fread(&magic, sizeof(uint32_t), 1, f);
 
@@ -1335,18 +1308,11 @@ bool demucscpp_v3::load_demucs_v3_model(
         return false;
     }
 
-    std::cout << "Model magic is Demucs V3 MMI" << std::endl;
-
-    std::cout << "Loading demucs model... " << std::endl;
-
     // we dont need to prepare memory for the weights
     // they come preallocated in the hardcoded model
 
     size_t total_size = 0;
     uint32_t n_loaded = 0;
-
-    // equivalent of with open(...) as f on each model_file
-    std::cout << "Loading weights from model_file" << std::endl;
 
     // load weights from the file one tensor at a time
 
@@ -1378,10 +1344,6 @@ bool demucscpp_v3::load_demucs_v3_model(
         {
             break;
         }
-
-        // std::cout << "Loading tensor " << name << " with shape [" << ne[0]
-        //             << ", " << ne[1] << ", " << ne[2] << ", " << ne[3] << "]"
-        //             << std::endl;
 
         // match the tensor name to the correct tensor in the model
         size_t loaded_size = 0;
