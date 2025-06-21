@@ -1,5 +1,4 @@
 /models*/
-/build/
 /node_modules/
 *.bin
 *.wav
