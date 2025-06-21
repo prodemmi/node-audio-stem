@@ -13,6 +13,9 @@
     "native-addon"
   ],
   "author": "Emad Malekpour",
+  "repository": {
+    "url": "https://github.com/prodemmi/node-audio-stem"
+  },
   "description": "Native Node.js addon for audio stem separation using C++",
   "license": "ISC",
   "scripts": {
