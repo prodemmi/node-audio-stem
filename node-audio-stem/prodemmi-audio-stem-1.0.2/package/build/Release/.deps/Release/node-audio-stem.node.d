@@ -1,1 +1,0 @@
-cmd_Release/node-audio-stem.node := ln -f "Release/obj.target/node-audio-stem.node" "Release/node-audio-stem.node" 2>/dev/null || (rm -rf "Release/node-audio-stem.node" && cp -af "Release/obj.target/node-audio-stem.node" "Release/node-audio-stem.node")

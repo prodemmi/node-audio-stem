@@ -94,6 +94,14 @@ jobs:
           name: node-addon
           path: node-audio-stem/build/
 
+      - name: Clean up build dependencies and source files
+        working-directory: ./node-audio-stem
+        run: |
+          # Remove build-time files that shouldn't be published
+          rm -f binding.gyp
+          rm -f addon.cpp
+          npm pkg delete devDependencies
+
       - name: Publish to npm
         working-directory: ./node-audio-stem
         run: |

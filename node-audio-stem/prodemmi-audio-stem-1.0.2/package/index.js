@@ -1,1 +1,0 @@
-export * as AudioStem from './build/Release/node-audio-stem.node';
