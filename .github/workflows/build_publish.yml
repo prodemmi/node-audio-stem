@@ -55,6 +55,7 @@ jobs:
       - name: Build node addon
         working-directory: ./node-audio-stem
         run: |
+          npm install
           npx node-gyp configure build --yes
 
       - name: Upload node module artifacts
