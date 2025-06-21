@@ -1,0 +1,12 @@
+{
+  "name": "examples",
+  "dependencies": {
+    "@prodemmi/audio-stem": "file://../node-audio-stem"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "cli-progress": "^3.12.0"
+  }
+}

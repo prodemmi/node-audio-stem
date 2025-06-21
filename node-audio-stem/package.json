@@ -1,0 +1,24 @@
+{
+  "name": "@prodemmi/audio-stem",
+  "version": "1.0.0",
+  "main": "index.cjs",
+  "module": "index.js",
+  "type": "module",
+  "types": "./@types/index.d.ts",
+  "keywords": [
+    "audio",
+    "stem",
+    "separation",
+    "node-gyp",
+    "native-addon"
+  ],
+  "author": "Emad Malekpour",
+  "description": "Native Node.js addon for audio stem separation using C++",
+  "license": "ISC",
+  "scripts": {
+    "postinstall": "mkdir -p models && cd models && wget -nc https://huggingface.co/datasets/Retrobear/demucs.cpp/resolve/main/ggml-model-htdemucs-4s-f16.bin"
+  },
+  "dependencies": {
+    "node-addon-api": "^8.4.0"
+  }
+}

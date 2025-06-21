@@ -452,7 +452,6 @@
     "nodedir": "/home/emad-pc/.cache/node-gyp/22.14.0",
     "python": "/usr/bin/python3",
     "standalone_static_library": 1,
-    "yes": "true",
     "user_agent": "npm/10.9.2 node/v22.14.0 linux x64 workspaces/false",
     "userconfig": "/home/emad-pc/.npmrc",
     "local_prefix": "/mnt/projects/Projects/Programming/node-audio-stem/node-audio-stem",

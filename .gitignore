@@ -6,6 +6,6 @@
 *.wav
 *.mp3
 !/test/data/*.wav
-*.json
 /__pycache__
 *.pyc
+/.vscode/
