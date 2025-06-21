@@ -14,6 +14,10 @@ jobs:
         with:
           submodules: true
           fetch-depth: 0
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake build-essential libblas-dev libopenblas-dev
 
       - name: Configure with CMake
         run: cmake -S . -B build
