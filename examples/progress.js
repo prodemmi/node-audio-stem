@@ -52,7 +52,7 @@ AudioStem.separate(audio_input, output_dir, function (progressInfo) {
             }
         }, 100);
     } else {
-        loadingBar.update(progress);
+        loadingBar.update(progress, { step: message });
     }
 });
 
