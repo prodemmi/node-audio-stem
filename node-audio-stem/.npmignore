@@ -1,0 +1,20 @@
+# Ignore build leftovers
+build/Release/*.o
+build/Release/obj.target/
+build/**/*.d
+build/**/*.mk
+build/Makefile
+build/binding.*
+
+# Don't publish sources
+addon.cpp
+binding.gyp
+
+# Exclude model files (they'll be downloaded on install)
+models/
+
+# Ignore dev files
+*.log
+test/
+node_modules/
+*.ts
