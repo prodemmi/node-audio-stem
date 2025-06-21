@@ -1,6 +1,6 @@
 {
   "name": "@prodemmi/audio-stem",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.cjs",
   "module": "index.js",
   "types": "./@types/index.d.ts",
@@ -33,7 +33,7 @@
   "scripts": {
     "postinstall": "mkdir -p models && cd models && wget -nc https://huggingface.co/datasets/Retrobear/demucs.cpp/resolve/main/ggml-model-htdemucs-4s-f16.bin"
   },
-  "dependencies": {
+  "devDependencies": {
     "node-addon-api": "^8.4.0"
   }
 }
