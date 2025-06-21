@@ -3,14 +3,26 @@
   "version": "1.0.0",
   "main": "index.cjs",
   "module": "index.js",
-  "type": "module",
   "types": "./@types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./index.cjs",
+      "import": "./index.js"
+    }
+  },
   "keywords": [
     "audio",
     "stem",
     "separation",
     "node-gyp",
     "native-addon"
+  ],
+  "files": [
+    "index.cjs",
+    "index.js",
+    "tsconfig.json",
+    "@types/index.d.ts",
+    "build/Release/node-audio-stem.node"
   ],
   "author": "Emad Malekpour",
   "repository": {
