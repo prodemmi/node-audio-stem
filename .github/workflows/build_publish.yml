@@ -6,7 +6,7 @@ on:
       - main
       - master
 jobs:
-  build:
+  build-cpp:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo with submodules
@@ -28,7 +28,7 @@ jobs:
           path: build/
 
   build-gyp:
-    needs: [build]
+    needs: [build-cpp]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo with submodules
