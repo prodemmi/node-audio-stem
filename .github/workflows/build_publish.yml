@@ -54,6 +54,8 @@ jobs:
 
       - name: Build node addon
         working-directory: ./node-audio-stem
+        env:
+          LDFLAGS: "-L/usr/lib/x86_64-linux-gnu"
         run: |
           npm install
           npx node-gyp configure build --yes
