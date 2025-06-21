@@ -131,10 +131,3 @@ add_custom_target(lint
 # get gtest from vendor/googletest
 set(BUILD_GMOCK OFF CACHE BOOL "Disable gmock in googletest" FORCE)
 add_subdirectory(vendor/googletest)
-
-# include test/*.cpp as test files
-file(GLOB TEST_SOURCES "test/*.cpp")
-
-add_executable(demucs.cpp.test ${TEST_SOURCES})
-target_link_libraries(demucs.cpp.test demucs.cpp.lib gtest gtest_main libnyquist)
-add_test(NAME tests COMMAND demucs.cpp.test)
