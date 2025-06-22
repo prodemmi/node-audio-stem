@@ -93,6 +93,9 @@ static void write_audio_file(const Eigen::MatrixXf &waveform,
         fileData->samples[2 * i] = waveform(0, i);
         fileData->samples[2 * i + 1] = waveform(1, i);
     }
+
+    encode_wav_to_disk({fileData->channelCount, PCM_FLT, DITHER_TRIANGLE},
+                           fileData.get(), filename);
 }
 
 // Replace the Separate function with this updated version
@@ -238,7 +241,7 @@ Napi::Boolean Separate(const Napi::CallbackInfo &info)
             }
         }
 
-        write_audio_file(target_waveform, p_target);
+        write_audio_file(target_waveform, p_target.string());
     }
 
     return Napi::Boolean::New(env, true);
