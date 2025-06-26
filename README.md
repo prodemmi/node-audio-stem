@@ -1,3 +1,6 @@
+![NPM Version](https://img.shields.io/npm/v/%40prodemmi%2Faudio-stem?style=plastic)
+![NPM Downloads](https://img.shields.io/npm/dw/%40prodemmi%2Faudio-stem?style=plastic)
+
 # @prodemmi/audio-stem
 
 > Native Node.js addon for audio stem separation (e.g. vocals, guitars, drums) using [demucs.cpp](http://github.com/sevagh/demucs.cpp) project.
